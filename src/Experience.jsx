@@ -8,7 +8,8 @@ export default function Experience(){
 
   return (
     <>
-      <OrbitControls />       
+      <OrbitControls />  
+           
         <RoundedBox
           radius={0.01}
           >
