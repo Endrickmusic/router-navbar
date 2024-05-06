@@ -4,6 +4,8 @@ import { Canvas } from "@react-three/fiber"
 import { Environment } from "@react-three/drei"
 import { Routes, Route, Outlet, Link } from "react-router-dom"
 import Experience from "./Experience"
+import { text } from "./text"
+
 import './index.css'
 
 export default function App() {
@@ -12,12 +14,12 @@ export default function App() {
   
   <>
   <Routes>
-  <Route path="/" element={<Layout />}> 
-    <Route index element={<Home />} />
-    <Route path="/about" element={<About />} />    
-    <Route path="/dashboard" element={<Dashboard />} />
-    <Route path="*" element={<NoMatch />} />
-  </Route>
+    <Route path="/" element={<Layout />}> 
+      <Route index element={<Home />} />
+      <Route path="/about" element={<About />} />    
+      <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="*" element={<NoMatch />} />
+    </Route>
   </Routes>
 
   <Canvas shadows camera={{ position: [3, 3, 3], fov: 40 }}>
@@ -39,8 +41,8 @@ function Layout() {
     <div className='absolute z-10'>
       {/* A "layout route" is a good place to put markup you want to
           share across all the pages on your site, like navigation. */}
-      <nav className='bg-red-300'>
-        <ul className='flex justify-start mx-3 m-1 space-x-5'>
+      <nav className='border-transparent'>
+        <ul className='flex justify-start mx-6 m-3 space-x-5 border-transparent'>
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -69,8 +71,9 @@ function Layout() {
 
 function Home() {
   return (
-    <div className=''>
-      <h2>Home</h2>
+    <div className='m-10 p-4 leading-normal text-black-400 text-3xl'>
+      <h2 className='text-shadow underline'>Home</h2>
+      {text}
     </div>
   )
 }
@@ -79,6 +82,7 @@ function About() {
   return (
     <div>
       <h2>About</h2>
+      {text}
     </div>
   )
 }
