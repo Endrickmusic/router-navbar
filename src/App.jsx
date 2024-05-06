@@ -16,14 +16,12 @@ export default function App() {
     <Route index element={<Home />} />
     <Route path="/about" element={<About />} />    
     <Route path="/dashboard" element={<Dashboard />} />
+    <Route path="*" element={<NoMatch />} />
   </Route>
   </Routes>
 
   <Canvas shadows camera={{ position: [3, 3, 3], fov: 40 }}>
-   
-
-
-      
+         
       <Environment
         files="./hdris/envmap.hdr" />
         <color 
@@ -38,11 +36,11 @@ export default function App() {
 
 function Layout() {
   return (
-    <div>
+    <div className='absolute z-10'>
       {/* A "layout route" is a good place to put markup you want to
           share across all the pages on your site, like navigation. */}
-      <nav>
-        <ul>
+      <nav className='bg-red-300'>
+        <ul className='flex justify-start mx-3 m-1 space-x-5'>
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -71,7 +69,7 @@ function Layout() {
 
 function Home() {
   return (
-    <div>
+    <div className=''>
       <h2>Home</h2>
     </div>
   )
