@@ -1,48 +1,79 @@
-import { useState } from 'react'
-import Logo from '/face-blowing-a-kiss.svg'
+import { useState } from "react"
+import Logo from "/face-blowing-a-kiss.svg"
 import { Canvas } from "@react-three/fiber"
 import { Environment } from "@react-three/drei"
 import { Routes, Route, Outlet, Link } from "react-router-dom"
+
 import Experience from "./Experience"
+import Experience2 from "./Experience_2"
 import { text } from "./text"
 
-import './index.css'
+import "./index.css"
 
 export default function App() {
+  return (
+    <>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="*" element={<NoMatch />} />
+        </Route>
+      </Routes>
 
- return (
-  
-  <>
-  <Routes>
-    <Route path="/" element={<Layout />}> 
-      <Route index element={<Home />} />
-      <Route path="/about" element={<About />} />    
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="*" element={<NoMatch />} />
-    </Route>
-  </Routes>
-
-  <Canvas shadows camera={{ position: [3, 3, 3], fov: 40 }}>
-         
-      <Environment
-        files="./hdris/envmap.hdr" />
-        <color 
-          attach="background" 
-          args={["#aaefef"]} />    
-      <Experience />
-  
-  </Canvas>
-  </>
+      <Canvas shadows camera={{ position: [3, 3, 3], fov: 40 }}>
+        <Environment files="./hdris/envmap.hdr" />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <color attach="background" args={["#aaefef"]} />
+                <Experience />
+              </>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <>
+                <color attach="background" args={["#efaaef"]} />
+                <Experience2 />
+              </>
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <>
+                <color attach="background" args={["#00FF00"]} />
+                <Experience />
+              </>
+            }
+          />
+          <Route
+            path="/*"
+            element={
+              <>
+                <color attach="background" args={["#0000gg"]} />
+                <Experience2 />
+              </>
+            }
+          />
+        </Routes>
+      </Canvas>
+    </>
   )
 }
 
 function Layout() {
   return (
-    <div className='absolute z-10'>
+    <div className="absolute z-10">
       {/* A "layout route" is a good place to put markup you want to
           share across all the pages on your site, like navigation. */}
-      <nav className='border-transparent'>
-        <ul className='flex justify-start mx-6 m-3 space-x-5 border-transparent'>
+      <nav className="border-transparent">
+        <ul className="flex justify-start mx-6 m-3 space-x-5 border-transparent">
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -65,14 +96,13 @@ function Layout() {
           the child routes we defined above. */}
       <Outlet />
     </div>
-  );
+  )
 }
-
 
 function Home() {
   return (
-    <div className='m-10 p-4 leading-normal text-black-400 text-3xl'>
-      <h2 className='text-shadow underline'>Home</h2>
+    <div className="m-10 p-4 leading-normal text-black-400 text-3xl">
+      <h2 className="text-shadow underline">Home</h2>
       {text}
     </div>
   )
