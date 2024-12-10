@@ -110,7 +110,7 @@ function Home() {
 
 function About() {
   return (
-    <div>
+    <div className="m-10 p-4 leading-normal text-black-400 text-3xl">
       <h2>About</h2>
       {text}
     </div>
@@ -119,15 +119,16 @@ function About() {
 
 function Dashboard() {
   return (
-    <div>
+    <div className="m-10 p-4 leading-normal text-black-400 text-3xl">
       <h2>Dashboard</h2>
+      {text}
     </div>
   )
 }
 
 function NoMatch() {
   return (
-    <div>
+    <div className="m-10 p-4 leading-normal text-black-400 text-3xl">
       <h2>Nothing to see here!</h2>
       <p>
         <Link to="/">Go to the home page</Link>

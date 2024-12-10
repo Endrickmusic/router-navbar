@@ -1,21 +1,36 @@
 import { OrbitControls, RoundedBox, useTexture } from "@react-three/drei"
 import {} from "@react-three/fiber"
+import { useRef } from "react"
+import { useFrame } from "@react-three/fiber"
 
 export default function Experience2() {
-  const normalMap = useTexture("./textures/waternormals.jpeg")
+  const cube1Ref = useRef()
+  const cube2Ref = useRef()
+
+  useFrame((state, delta) => {
+    if (cube1Ref.current) {
+      cube1Ref.current.rotation.x += delta
+      cube1Ref.current.rotation.y += delta
+    }
+    if (cube2Ref.current) {
+      cube2Ref.current.rotation.x -= delta
+      cube2Ref.current.rotation.y -= delta
+    }
+  })
 
   return (
     <>
-      <OrbitControls />
+      {/* Cube behind text */}
+      <mesh ref={cube1Ref} position={[-1, 0, 1]}>
+        <boxGeometry />
+        <meshStandardMaterial color="purple" />
+      </mesh>
 
-      <RoundedBox radius={0.01}>
-        <meshStandardMaterial
-          metalness={1}
-          roughness={0.12}
-          normalMap={normalMap}
-          color="red"
-        />
-      </RoundedBox>
+      {/* Cube in front of text */}
+      <mesh ref={cube2Ref} position={[1, 0, -1]}>
+        <boxGeometry />
+        <meshStandardMaterial color="teal" />
+      </mesh>
     </>
   )
 }
