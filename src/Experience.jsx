@@ -22,7 +22,7 @@ export default function Experience() {
     <>
       <OrbitControls />
 
-      <RoundedBox radius={0.01}>
+      <RoundedBox radius={0.01} className="z-40">
         <meshStandardMaterial
           metalness={1}
           roughness={0.12}
@@ -31,13 +31,13 @@ export default function Experience() {
       </RoundedBox>
 
       {/* Cube behind text */}
-      <mesh ref={cube1Ref} position={[-3, 0, 1]}>
+      <mesh ref={cube1Ref} position={[-3, 0, 1]} className="z-10">
         <boxGeometry />
         <meshStandardMaterial color="orange" />
       </mesh>
 
       {/* Cube in front of text */}
-      <mesh ref={cube2Ref} position={[2, 0, -2]}>
+      <mesh ref={cube2Ref} position={[2, 0, -2]} className="z-30">
         <boxGeometry />
         <meshStandardMaterial color="hotpink" />
       </mesh>

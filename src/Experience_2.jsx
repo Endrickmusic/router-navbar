@@ -21,13 +21,13 @@ export default function Experience2() {
   return (
     <>
       {/* Cube behind text */}
-      <mesh ref={cube1Ref} position={[-1, 0, 1]}>
+      <mesh ref={cube1Ref} position={[-1, 0, 1]} className="z-10">
         <boxGeometry />
         <meshStandardMaterial color="purple" />
       </mesh>
 
       {/* Cube in front of text */}
-      <mesh ref={cube2Ref} position={[1, 0, -1]}>
+      <mesh ref={cube2Ref} position={[1, 0, -1]} className="z-30">
         <boxGeometry />
         <meshStandardMaterial color="teal" />
       </mesh>

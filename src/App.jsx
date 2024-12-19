@@ -4,63 +4,60 @@ import { Canvas } from "@react-three/fiber"
 import { Environment } from "@react-three/drei"
 import { Routes, Route, Outlet, Link } from "react-router-dom"
 
-import Experience from "./Experience"
-import Experience2 from "./Experience_2"
-import { text } from "./text"
+import {
+  HomeUnderlayer,
+  AboutUnderlayer,
+  DashboardUnderlayer,
+  ErrorUnderlayer,
+} from "./components/Underlayers.jsx"
+import {
+  HomeExperience,
+  AboutExperience,
+  DashboardExperience,
+  ErrorExperience,
+} from "./components/Experiences.jsx"
+import {
+  HomeOverlay,
+  AboutOverlay,
+  DashboardOverlay,
+  ErrorOverlay,
+} from "./components/Overlays.jsx"
 
 import "./index.css"
 
 export default function App() {
   return (
     <>
+      {/* Underlayer Routes */}
+      <Routes>
+        <Route path="/" element={<HomeUnderlayer />} />
+        <Route path="/about" element={<AboutUnderlayer />} />
+        <Route path="/dashboard" element={<DashboardUnderlayer />} />
+        <Route path="*" element={<ErrorUnderlayer />} />
+      </Routes>
+
+      {/* Overlay Routes (your current Layout routes) */}
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="*" element={<NoMatch />} />
+          <Route index element={<HomeOverlay />} />
+          <Route path="/about" element={<AboutOverlay />} />
+          <Route path="/dashboard" element={<DashboardOverlay />} />
+          <Route path="*" element={<ErrorOverlay />} />
         </Route>
       </Routes>
 
-      <Canvas shadows camera={{ position: [3, 3, 3], fov: 40 }}>
+      {/* Canvas/Experience Routes */}
+      <Canvas
+        className="fixed inset-0"
+        shadows
+        camera={{ position: [0, 0, 5], fov: 40 }}
+      >
         <Environment files="./hdris/envmap.hdr" />
         <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <color attach="background" args={["#aaefef"]} />
-                <Experience />
-              </>
-            }
-          />
-          <Route
-            path="/about"
-            element={
-              <>
-                <color attach="background" args={["#efaaef"]} />
-                <Experience2 />
-              </>
-            }
-          />
-          <Route
-            path="/dashboard"
-            element={
-              <>
-                <color attach="background" args={["#00FF00"]} />
-                <Experience />
-              </>
-            }
-          />
-          <Route
-            path="/*"
-            element={
-              <>
-                <color attach="background" args={["#0000gg"]} />
-                <Experience2 />
-              </>
-            }
-          />
+          <Route path="/" element={<HomeExperience />} />
+          <Route path="/about" element={<AboutExperience />} />
+          <Route path="/dashboard" element={<DashboardExperience />} />
+          <Route path="*" element={<ErrorExperience />} />
         </Routes>
       </Canvas>
     </>
@@ -69,7 +66,7 @@ export default function App() {
 
 function Layout() {
   return (
-    <div className="absolute z-10">
+    <div className="absolute z-20">
       {/* A "layout route" is a good place to put markup you want to
           share across all the pages on your site, like navigation. */}
       <nav className="border-transparent">
@@ -95,44 +92,6 @@ function Layout() {
           so you can think about this <Outlet> as a placeholder for
           the child routes we defined above. */}
       <Outlet />
-    </div>
-  )
-}
-
-function Home() {
-  return (
-    <div className="m-10 p-4 leading-normal text-black-400 text-3xl">
-      <h2 className="text-shadow underline">Home</h2>
-      {text}
-    </div>
-  )
-}
-
-function About() {
-  return (
-    <div className="m-10 p-4 leading-normal text-black-400 text-3xl">
-      <h2>About</h2>
-      {text}
-    </div>
-  )
-}
-
-function Dashboard() {
-  return (
-    <div className="m-10 p-4 leading-normal text-black-400 text-3xl">
-      <h2>Dashboard</h2>
-      {text}
-    </div>
-  )
-}
-
-function NoMatch() {
-  return (
-    <div className="m-10 p-4 leading-normal text-black-400 text-3xl">
-      <h2>Nothing to see here!</h2>
-      <p>
-        <Link to="/">Go to the home page</Link>
-      </p>
     </div>
   )
 }
