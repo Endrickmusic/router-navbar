@@ -2,7 +2,7 @@ import { useState } from "react"
 import Logo from "/face-blowing-a-kiss.svg"
 import { Canvas } from "@react-three/fiber"
 import { Environment } from "@react-three/drei"
-import { Routes, Route, Outlet, Link } from "react-router-dom"
+import { Routes, Route, Outlet, Link, useLocation } from "react-router-dom"
 
 import {
   HomeUnderlayer,
@@ -65,32 +65,50 @@ export default function App() {
 }
 
 function Layout() {
+  const location = useLocation()
+
   return (
     <div className="absolute z-20">
-      {/* A "layout route" is a good place to put markup you want to
-          share across all the pages on your site, like navigation. */}
       <nav className="border-transparent">
         <ul className="flex justify-start mx-6 m-3 space-x-5 border-transparent">
           <li>
-            <Link to="/">Home</Link>
+            <Link
+              to="/"
+              className={location.pathname === "/" ? "underline" : ""}
+            >
+              Home
+            </Link>
           </li>
           <li>
-            <Link to="/about">About</Link>
+            <Link
+              to="/about"
+              className={location.pathname === "/about" ? "underline" : ""}
+            >
+              About
+            </Link>
           </li>
           <li>
-            <Link to="/dashboard">Dashboard</Link>
+            <Link
+              to="/dashboard"
+              className={location.pathname === "/dashboard" ? "underline" : ""}
+            >
+              Dashboard
+            </Link>
           </li>
           <li>
-            <Link to="/nothing-here">Nothing Here</Link>
+            <Link
+              to="/nothing-here"
+              className={
+                location.pathname === "/nothing-here" ? "underline" : ""
+              }
+            >
+              Nothing Here
+            </Link>
           </li>
         </ul>
       </nav>
 
       <hr />
-
-      {/* An <Outlet> renders whatever child route is currently active,
-          so you can think about this <Outlet> as a placeholder for
-          the child routes we defined above. */}
       <Outlet />
     </div>
   )

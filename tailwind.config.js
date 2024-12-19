@@ -1,11 +1,13 @@
 /** @type {import('tailwindcss').Config} */
-export default {
-  content: [
-    "./index.html",
-    "./src/**/*.jsx",
-  ],
+module.exports = {
+  content: ["./index.html", "./src/**/*.jsx"],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        sans: ["Space Grotesk", "sans-serif"],
+        custom: ["Space Grotesk", "sans-serif"],
+      },
+    },
   },
   plugins: [],
 }
