@@ -4,8 +4,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Space Grotesk", "sans-serif"],
-        custom: ["Space Grotesk", "sans-serif"],
+        serif: ["IBM Plex Serif", "serif"],
+        heading: ["Space Grotesk", "sans-serif"],
       },
     },
   },
