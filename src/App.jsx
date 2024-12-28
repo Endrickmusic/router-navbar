@@ -30,13 +30,13 @@ export default function App() {
     <>
       {/* Underlayer Routes */}
       <Routes>
-        <Route path="/" element={<HomeUnderlayer />} />
+        <Route exact path="/" element={<HomeUnderlayer />} />
         <Route path="/about" element={<AboutUnderlayer />} />
         <Route path="/dashboard" element={<DashboardUnderlayer />} />
         <Route path="*" element={<ErrorUnderlayer />} />
       </Routes>
 
-      {/* Overlay Routes (your current Layout routes) */}
+      {/* Overlay Routes */}
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<HomeOverlay />} />
@@ -47,14 +47,9 @@ export default function App() {
       </Routes>
 
       {/* Canvas/Experience Routes */}
-      <Canvas
-        className="fixed inset-0"
-        shadows
-        camera={{ position: [0, 0, 5], fov: 40 }}
-      >
-        <Environment files="./hdris/envmap.hdr" />
+      <Canvas>
         <Routes>
-          <Route path="/" element={<HomeExperience />} />
+          <Route exact path="/" element={<HomeExperience />} />
           <Route path="/about" element={<AboutExperience />} />
           <Route path="/dashboard" element={<DashboardExperience />} />
           <Route path="*" element={<ErrorExperience />} />
