@@ -48,6 +48,7 @@ export default function App() {
 
       {/* Canvas/Experience Routes */}
       <Canvas>
+        <Environment files="./hdris/envmap.hdr" />
         <Routes>
           <Route exact path="/" element={<HomeExperience />} />
           <Route path="/about" element={<AboutExperience />} />
